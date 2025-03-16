@@ -163,5 +163,10 @@ bindsym $mod+r mode "resize"
 
 # Start status bar
 bar {
+	colors {
+	 	background #282828
+		# for some reason it is default font color...
+	 	statusline #EBDBB2
+	}
         status_command i3status
 }
