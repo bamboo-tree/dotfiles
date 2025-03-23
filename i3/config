@@ -30,8 +30,8 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% 
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -40,7 +40,8 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 # Shutdown
-bindsym $mod+Home exec shutdown 0
+bindsym $mod+shift+Home exec shutdown 0
+bindsym $mod+Home exec "i3lock --color 000000"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -163,10 +164,18 @@ bindsym $mod+r mode "resize"
 
 # Start status bar
 bar {
+	workspace_min_width 26px
+
 	colors {
 	 	background #282828
-		# for some reason it is default font color...
 	 	statusline #EBDBB2
+		separator  #928374
+
+		focused_workspace  #689D6A #282828 #8EC07C
+        	# active_workspace   #333333 #5f676a #ffffff
+        	inactive_workspace #282828 #282828 #928374
+     		urgent_workspace   #CC241D #282828 #FB4934
+        	binding_mode       #458588 #282828 #83a598
 	}
         status_command i3status
 }
