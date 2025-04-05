@@ -38,10 +38,6 @@ ethernet _first_ {
 	format_down = ""
 }
 
-disk / {
-	format = "D: %percentage_used/%total"
-}
-
 battery all {
 	format = "%status: %percentage %remaining"
 	format_percentage = "%.1f%s"
@@ -51,6 +47,10 @@ battery all {
 	status_bat = "B"
 	status_unk = "U"
 	status_full = "F"
+}
+
+disk / {
+	format = "D: %percentage_used/%total"
 }
 
 cpu_usage {
