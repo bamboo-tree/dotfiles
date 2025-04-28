@@ -1,20 +1,47 @@
 # Set Win as mod button
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
+# Font
 font pango:Source Code Pro Semibold 12
 
 # Remove titlebar and set thin border
 default_border pixel 1
 
-# class                 border  backgr. text    indicator child_border
-client.focused          #CC241D #282828 #EBDBB2 #B16286   #D79921
-# client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-# client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-# client.urgent           #2f343a #900000 #ffffff #900000   #900000
-# client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-client.background       #282828
+# Define color pallete - catpuccin mocha
+set $rosewater #f5e0dc
+set $flamingo #f2cdcd
+set $pink #f5c2e7
+set $mauve #cba6f7
+set $red #f38ba8
+set $maroon #eba0ac
+set $peach #fab387
+set $yellow #f9e2af
+set $green #a6e3a1
+set $teal #94e2d5
+set $sky #89dceb
+set $sapphire #74c7ec
+set $blue #89b4fa
+set $lavender #b4befe
+set $text #cdd6f4
+set $subtext1 #bac2de
+set $subtext0 #a6adc8
+set $overlay2 #9399b2
+set $overlay1 #7f849c
+set $overlay0 #6c7086
+set $surface2 #585b70
+set $surface1 #45475a
+set $surface0 #313244
+set $base #1e1e2e
+set $mantle #181825
+set $crust #11111b
+
+# target                 title     bg    text   indicator  border
+client.focused           $lavender $base $text  $rosewater $lavender
+client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
+client.unfocused         $overlay0 $base $text  $rosewater $overlay0
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -166,17 +193,18 @@ bindsym $mod+r mode "resize"
 # Start status bar
 bar {
 	workspace_min_width 26px
-
+	
 	colors {
-	 	background #282828
-	 	statusline #EBDBB2
-		separator  #928374
+    		background         $base
+    		statusline         $text
+    		focused_statusline $text
+    		focused_separator  $base
 
-		focused_workspace  #689D6A #282828 #8EC07C
-        	# active_workspace   #333333 #5f676a #ffffff
-        	inactive_workspace #282828 #282828 #928374
-     		urgent_workspace   #CC241D #282828 #FB4934
-        	binding_mode       #458588 #282828 #83a598
-	}
+    		# target           border bg        text
+	    	focused_workspace  $base  $mauve    $crust
+    		active_workspace   $base  $surface2 $text
+    		inactive_workspace $base  $base     $text
+    		urgent_workspace   $base  $red      $crust
+  	}
         status_command i3status
 }
