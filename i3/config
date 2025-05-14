@@ -72,10 +72,13 @@ bindsym $mod+Home exec "i3lock --color 000000"
 
 # Other apps 
 bindsym $mod+c exec --no-startup-id gnome-calculator
+bindsym Print exec --no-startup-id flameshot gui
 
+# xprop | grep WM_CLASS
 # Floating apps
 for_window [class="gnome-calculator"] floating enable
 for_window [class="org.gnome.Nautilus"] floating enable
+for_window [class="loupe"] floating enable
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -90,7 +93,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+b exec firefox
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+shift+q kill
 
 # start rofi
 bindsym $mod+d exec --no-startup-id rofi -show drun
@@ -175,7 +178,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+q exec i3-msg exit
+bindsym $mod+Escape+Shift+q exec i3-msg exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
