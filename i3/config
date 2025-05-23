@@ -79,7 +79,7 @@ bindsym Print exec --no-startup-id flameshot gui
 for_window [class="gnome-calculator"] floating enable
 for_window [class="org.gnome.Nautilus"] floating enable
 for_window [class="loupe"] floating enable
-
+for_window [class="org.gnome.Weather"] floating enable
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

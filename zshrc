@@ -44,6 +44,7 @@ alias la="ls -a --color=always"
 alias ll="ls -l --color=always"
 alias note="cd ~/Documents/notes && nvim ."
 alias syu="sh ~/my-scripts/update"
+alias brightness="sh ~/my-scripts/brightness"
 alias startlampp="sudo /opt/lampp/lampp start"
 alias stoplampp="sudo /opt/lampp/lampp stop"
 

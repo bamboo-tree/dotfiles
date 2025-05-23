@@ -1,0 +1,29 @@
+{
+    // Theme settings
+    "editor.fontSize": 14,
+    "editor.fontFamily": "'Source Code Pro Medium', 'monospace', monospace",
+    "editor.fontWeight": "800",
+    "workbench.iconTheme": "symbols",
+    "workbench.colorTheme": "Catppuccin Mocha",
+    // view settings
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+    "editor.renderWhitespace": "all",
+    "editor.tabSize": 2,
+    "window.zoomLevel": 0,
+    // some babysitting
+    "symbols.hidesExplorerArrows": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "workbench.startupEditor": "none",
+    // formatting
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    // vim settings
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "vim.useSystemClipboard": true,
+    "keyboard.dispatch": "keyCode",
+    "editor.lineNumbers": "relative" // Use keyCode for neovim
+}
