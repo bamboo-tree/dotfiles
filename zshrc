@@ -47,7 +47,7 @@ alias syu="sh ~/my-scripts/update"
 alias brightness="sh ~/my-scripts/brightness"
 alias startlampp="sudo /opt/lampp/lampp start"
 alias stoplampp="sudo /opt/lampp/lampp stop"
-
+alias vim="nvim ."
 # shell integrations
 eval "$(fzf --zsh)"
 

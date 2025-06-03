@@ -4,7 +4,6 @@
     "editor.fontFamily": "'Source Code Pro Medium', 'monospace', monospace",
     "editor.fontWeight": "800",
     "workbench.iconTheme": "symbols",
-    "workbench.colorTheme": "Catppuccin Mocha",
     // view settings
     "editor.minimap.enabled": false,
     "breadcrumbs.enabled": false,
@@ -25,5 +24,10 @@
     },
     "vim.useSystemClipboard": true,
     "keyboard.dispatch": "keyCode",
-    "editor.lineNumbers": "relative" // Use keyCode for neovim
+    "editor.lineNumbers": "relative",
+    "redhat.telemetry.enabled": false,
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "workbench.preferredDarkColorTheme": "Catppuccin Mocha",
+    "workbench.preferredLightColorTheme": "Catppuccin Latte",
+    "javascript.updateImportsOnFileMove.enabled": "always" // Use keyCode for neovim
 }
