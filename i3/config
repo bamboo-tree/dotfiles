@@ -2,10 +2,13 @@
 set $mod Mod4
 
 # Font
-font pango:Source Code Pro Semibold 12
+font pango:Source Code Pro Bold 12
 
 # Remove titlebar and set thin border
-default_border pixel 1
+default_border pixel 2
+# Gap between windows 8, outside 2
+gaps inner 8
+gaps outer -6
 
 # Define color pallete - catpuccin mocha
 set $rosewater #f5e0dc
@@ -80,6 +83,8 @@ for_window [class="gnome-calculator"] floating enable
 for_window [class="org.gnome.Nautilus"] floating enable
 for_window [class="loupe"] floating enable
 for_window [class="org.gnome.Weather"] floating enable
+for_window [class="TicTacToe"] floating enable
+for_window [class="gnome-text-editor"] floating enable
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
