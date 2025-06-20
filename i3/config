@@ -10,41 +10,22 @@ default_border pixel 2
 gaps inner 8
 gaps outer -6
 
-# Define color pallete - catpuccin mocha
-set $rosewater #f5e0dc
-set $flamingo #f2cdcd
-set $pink #f5c2e7
-set $mauve #cba6f7
-set $red #f38ba8
-set $maroon #eba0ac
-set $peach #fab387
-set $yellow #f9e2af
-set $green #a6e3a1
-set $teal #94e2d5
-set $sky #89dceb
-set $sapphire #74c7ec
-set $blue #89b4fa
-set $lavender #b4befe
-set $text #cdd6f4
-set $subtext1 #bac2de
-set $subtext0 #a6adc8
-set $overlay2 #9399b2
-set $overlay1 #7f849c
-set $overlay0 #6c7086
-set $surface2 #585b70
-set $surface1 #45475a
-set $surface0 #313244
-set $base #1e1e2e
-set $mantle #181825
-set $crust #11111b
+# New custom pallete
+set $black #1D1E2C
+set $white #F0E6EF
+set $primary #CB9CF2
+set $secondary #6C698D
+set $green #7BE0AD
+set $red #FF1654
 
-# target                 title     bg    text   indicator  border
-client.focused           $lavender $base $text  $rosewater $lavender
-client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
-client.unfocused         $overlay0 $base $text  $rosewater $overlay0
-client.urgent            $peach    $base $peach $overlay0  $peach
-client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
-client.background        $base
+
+# target                 title      bg     text    indicator  border
+client.focused           $white		  $black $white  $secondary $primary
+client.focused_inactive  $secondary $black $white  $black			$secondary
+client.unfocused         $secondary $black $white  $black			$secondary
+client.urgent            $red       $black $red		 $black		  $red
+client.placeholder       $secondary $black $white  $black		  $secondary
+client.background        $black
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -166,6 +147,10 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
+# cycle through workspace
+bindsym $mod+Right workspace next
+bindsym $mod+Left workspace prev
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
@@ -211,16 +196,16 @@ bar {
 	workspace_min_width 26px
 	
 	colors {
-    		background         $base
-    		statusline         $text
-    		focused_statusline $text
-    		focused_separator  $base
+    		background         $black
+    		statusline         $secondary
+    		focused_statusline $secondary
+    		focused_separator  $black
 
-    		# target           border bg        text
-	    	focused_workspace  $base  $mauve    $crust
-    		active_workspace   $base  $surface2 $text
-    		inactive_workspace $base  $base     $text
-    		urgent_workspace   $base  $red      $crust
+    		# target           border    bg       text
+	    	focused_workspace  $primary  $black		$primary
+    		active_workspace   $primary  $black		$white
+    		inactive_workspace $black		 $black		$secondary
+    		urgent_workspace   $red      $black   $red
   	}
         status_command i3status
 }
