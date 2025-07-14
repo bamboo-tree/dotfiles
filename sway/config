@@ -1,17 +1,17 @@
-## PRE CONFIGURATION
-	
+### PRE CONFIGURATION
+
 	# Set Win as mod button
-  set $mod Mod4
+	set $mod Mod4
 	
 	# Your preferred terminal emulator
 	set $term kitty
-	
-	
-## APPEARANCE
-	
+
+
+### APPEARANCE
+
 	# Font
 	font pango:Source Code Pro Bold 12
-	
+
 	# Wallpaper
 	# output * bg ~/Pictures/Wallpaper/dark_stars_2.jpg fill
 
@@ -20,7 +20,7 @@
 
 	# Gap
 	gaps inner 4
-	
+
 	# Color palette
 	set $black #1D1E2C
 	set $white #F0E6EF
@@ -28,7 +28,7 @@
 	set $secondary #6C698D
 	set $green #7BE0AD
 	set $red #FF1654
-	
+
 	# target                 title      bg     text    indicator  border
 	client.focused           $white		  $black $white  $secondary $primary
 	client.focused_inactive  $secondary $black $white  $black			$secondary
@@ -36,75 +36,78 @@
 	client.urgent            $red       $black $red		 $black		  $red
 	client.placeholder       $secondary $black $white  $black		  $secondary
 	client.background        $black
-	
-	
-## IDLE CONFIGURATION
-	exec swayidle -w \
-  timeout 300 'swaylock -f -c 000000 && swaymsg "output * power off"' \
-  resume 'swaymsg "output * power on"' \
-  before-sleep 'swaylock -f -c 000000 && swaymsg "output * power off"'
 
-	
-## INPUT CONFIGURATION
-	
+
+### IDLE CONFIGURATION
+	exec swayidle -w \
+	timeout 300 'swaylock -f -c 000000 && swaymsg "output * power off"' \
+	resume 'swaymsg "output * power on"' \
+	before-sleep 'swaylock -f -c 000000 && swaymsg "output * power off"'
+
+
+### INPUT CONFIGURATION
+
 	input type:touchpad {
-			dwt enabled
-			tap enabled
-			natural_scroll enabled
-			middle_emulation enabled
+		dwt enabled
+		tap enabled
+		natural_scroll enabled
+		middle_emulation enabled
 	}
-	
+
 	input type:keyboard {
-			xkb_layout "pl"
-			xkb_model "pc101"
-			xkb_options caps:swapescape
+		xkb_layout "pl"
+		xkb_model "pc101"
+		xkb_options caps:swapescape
 	}
-	 
-	
-## KEY BINDINGS
-	
+
+
+### KEY BINDINGS
+
 	# Start a terminal
 	bindsym $mod+Return exec $term
-	
+
 	# Kill focused window
 	bindsym $mod+Shift+q kill
-	
+
 	# Start rofi
 	bindsym $mod+d exec --no-startup-id rofi -show combi -icon-theme "Papirus" -show-icons
-	
+
 	# Reload the configuration file
 	bindsym $mod+Shift+r reload
-	
+
 	# Exit sway - logout
 	bindsym $mod+Shift+Return+q exec exit sway
 
 	# Start a browser
 	bindsym $mod+b exec firefox
-	
-	
-## NAVIGATION
-	
+
+	# Calculator
+	bindsym $mod+c exec --no-startup gnome-calculator
+
+
+### NAVIGATION
+
 	# Vim homerow
 	set $left h
 	set $down j
 	set $up k
 	set $right l
-	
+
 	# Move your focus around
 	bindsym $mod+$left focus left
 	bindsym $mod+$down focus down
 	bindsym $mod+$up focus up
 	bindsym $mod+$right focus right
-	
+
 	# Move the focused window 
 	bindsym $mod+Shift+$left move left
 	bindsym $mod+Shift+$down move down
 	bindsym $mod+Shift+$up move up
 	bindsym $mod+Shift+$right move right
-	
-	
-## WORKSPACES
-	
+
+
+### WORKSPACES
+
 	# Switch to workspace
 	bindsym $mod+1 workspace number 1
 	bindsym $mod+2 workspace number 2
@@ -116,11 +119,11 @@
 	bindsym $mod+8 workspace number 8
 	bindsym $mod+9 workspace number 9
 	bindsym $mod+0 workspace number 10
-	
+
 	# Cycle through workspaces
 	bindsym $mod+Right workspace next
 	bindsym $mod+Left workspace prev
-	
+
 	# Move focused container to workspace
 	bindsym $mod+Shift+1 move container to workspace number 1
 	bindsym $mod+Shift+2 move container to workspace number 2
@@ -132,110 +135,117 @@
 	bindsym $mod+Shift+8 move container to workspace number 8
 	bindsym $mod+Shift+9 move container to workspace number 9
 	bindsym $mod+Shift+0 move container to workspace number 10
-	
-	
-## LAYOUT
-	
+
+
+### LAYOUT
+
 	# Split in horizontal orientation
 	bindsym $mod+g splith
 	# Split in vertical orientation
 	bindsym $mod+v splitv
-	
+
 	# Switch the current container between different layout styles
 	bindsym $mod+s layout stacking
 	bindsym $mod+w layout tabbed
 	bindsym $mod+e layout toggle split
-	
+
 	# Make the current focus fullscreen
 	bindsym $mod+f fullscreen
-	
+
 	# Toggle the current focus between tiling and floating mode
 	bindsym $mod+Shift+space floating toggle
-	
+
 	# Swap focus between the tiling area and the floating area
 	bindsym $mod+space focus mode_toggle
-	
+
 	# Move focus to the parent container
 	bindsym $mod+a focus parent
-	
-	
-## SCRATCHPAD
-	
+
+
+### SCRATCHPAD
+
 	# Move the currently focused window to the scratchpad
 	bindsym $mod+Shift+minus move scratchpad
-	
+
 	# Show the next scratchpad window or hide the focused scratchpad window.
 	# If there are multiple scratchpad windows, this command cycles through them.
 	bindsym $mod+minus scratchpad show
-	
-	
-## RESIZING CONTAINERS
-	
+
+
+### FLOATING WINDOWS
+
+	for_window [class="gnome-calculator"] floating enable
+	for_window [class="org.gnome.Nautilus"] floating enable
+	for_window [class="loupe"] floating enable
+	for_window [class="org.gnome.Weather"] floating enable
+	for_window [class="TicTacToe"] floating enable
+	for_window [class="gnome-text-editor"] floating enable
+
+
+### RESIZING CONTAINERS
+
 	mode "resize" {
-	  	# Resize containers
-	  	bindsym $left resize shrink width 5px
-			bindsym $down resize shrink height 5px
-			bindsym $up resize grow height 5px
-			bindsym $right resize grow width 5px
+		# Resize containers
+		bindsym $left resize shrink width 5px
+		bindsym $down resize shrink height 5px
+		bindsym $up resize grow height 5px
+		bindsym $right resize grow width 5px
 	
-			# Return to default mode
-			bindsym Return mode "default"
-			bindsym Escape mode "default"
+		# Return to default mode
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
 	}
+
 	# Resize mode
 	bindsym $mod+r mode "resize"
-	
-	
-## UTILITIES
-	
-			# Volume
-			bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-			bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-			bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-			bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
-	
-			# Brightness
-			bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-			bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-	
-			# Screenshot
-			bindsym Print exec --no-startup-id flameshot gui
-		
-			# Shutdown
-			bindsym $mod+Shift+Home exec shutdown 0
-			
-			# Logout
-			bindsym $mod+Home exec swaylock -f -c 000000 & sleep 0.5
 
-			# NetworkManager
-			exec --no-startup-id nm-applet
-	
-	
-## STATUS BAR
-	
+
+### UTILITIES
+
+	# Volume
+	bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+	bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+	bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+	bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+
+	# Brightness
+	bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+	bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+	# Screenshot
+	bindsym Print exec --no-startup-id flameshot gui
+
+	# Shutdown
+	bindsym $mod+Shift+Home exec shutdown 0
+
+	# Logout
+	bindsym $mod+Home exec swaylock -f -c 000000 & sleep 0.5
+
+	# NetworkManager
+	exec --no-startup-id nm-applet
+
+
+### STATUS BAR
+
 	bar {
-			position top
+		workspace_min_width 26px
 
-			workspace_min_width 26px
-
-			
+		# When the status_command prints a new line to stdout, swaybar updates.
+		# The default just shows the current date and time.
+		status_command while date +'%Y-%m-%d %X'; do sleep 1; done
 	
-			# When the status_command prints a new line to stdout, swaybar updates.
-			# The default just shows the current date and time.
-			status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-	
-			colors {
-    		background         $black
-    		statusline         $secondary
-    		focused_statusline $secondary
-    		focused_separator  $black
+		colors {
+			background         $black
+			statusline         $secondary
+			focused_statusline $secondary
+			focused_separator  $black
 
-    		# target           border    bg       text
-	    	focused_workspace  $primary  $black		$primary
-    		active_workspace   $primary  $black		$white
-    		inactive_workspace $black		 $black		$secondary
-    		urgent_workspace   $red      $black   $red
-  	}
+			# target           border    bg       text
+			focused_workspace  $primary  $black		$primary
+			active_workspace   $primary  $black		$white
+			inactive_workspace $black		 $black		$secondary
+			urgent_workspace   $red      $black   $red
+		}
 	}
-	
+
 	include /etc/sway/config.d/*
