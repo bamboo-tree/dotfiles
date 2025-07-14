@@ -27,6 +27,9 @@ client.urgent            $red       $black $red		 $black		  $red
 client.placeholder       $secondary $black $white  $black		  $secondary
 client.background        $black
 
+# Wallpaper
+exec xset --no-startup-id feh --bg-scale /home/maciej/Pictures/Wallpaper/manai.png
+
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
@@ -82,7 +85,7 @@ bindsym $mod+b exec firefox
 bindsym $mod+shift+q kill
 
 # start rofi
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id rofi -show combi -icon-theme "Papirus" -show-icons
 
 # change focus
 bindsym $mod+h focus left
