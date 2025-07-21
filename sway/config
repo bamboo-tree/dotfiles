@@ -186,10 +186,10 @@
 
 	mode "resize" {
 		# Resize containers
-		bindsym $left resize shrink width 5px
-		bindsym $down resize shrink height 5px
-		bindsym $up resize grow height 5px
-		bindsym $right resize grow width 5px
+		bindsym $left resize shrink width 10px
+		bindsym $down resize shrink height 10px
+		bindsym $up resize grow height 10px
+		bindsym $right resize grow width 10px
 	
 		# Return to default mode
 		bindsym Return mode "default"
@@ -246,6 +246,7 @@
 			inactive_workspace $black		 $black		$secondary
 			urgent_workspace   $red      $black   $red
 		}
+		status_command i3status
 	}
 
 	include /etc/sway/config.d/*
