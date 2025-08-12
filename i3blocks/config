@@ -1,0 +1,27 @@
+# Global properties
+separator=false
+separator_block_width=10
+
+[disk]
+command=~/.config/i3blocks/scripts/disk.sh
+interval=5
+
+[memory]
+command=~/.config/i3blocks/scripts/memory.sh
+interval=5
+
+[cpu]
+command=~/.config/i3blocks/scripts/cpu.sh
+interval=5
+
+[brightness]
+command=~/.config/i3blocks/scripts/brightness.sh
+interval=repeat
+
+[battery]
+command=~/.config/i3blocks/scripts/battery.sh
+interval=10
+
+[time]
+command=~/.config/i3blocks/scripts/date-time.sh
+interval=1
