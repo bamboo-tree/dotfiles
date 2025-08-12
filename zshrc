@@ -42,6 +42,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 alias ls="ls --color=always"
 alias la="ls -a --color=always"
 alias ll="ls -l --color=always"
+alias sl="sl -d -w"
 alias note="cd ~/Documents/notes && nvim ."
 alias syu="sh ~/my-scripts/update"
 alias brightness="sh ~/my-scripts/brightness"

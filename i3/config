@@ -198,6 +198,8 @@ bindsym $mod+r mode "resize"
 bar {
 	workspace_min_width 26px
 	
+	status_command i3blocks
+	
 	colors {
     		background         $black
     		statusline         $secondary
@@ -210,5 +212,4 @@ bar {
     		inactive_workspace $black		 $black		$secondary
     		urgent_workspace   $red      $black   $red
   	}
-        status_command i3status
 }
