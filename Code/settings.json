@@ -41,5 +41,6 @@
     "cSpell.userWords": [
         "microcontroller",
         "temphum"
-    ] // Use keyCode for neovim
+    ],
+    "workbench.editor.empty.hint": "hidden" // Use keyCode for neovim
 }

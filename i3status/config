@@ -10,6 +10,7 @@ general {
 
 
 order += "volume master"
+order += "tztime holder__brightness"
 order += "memory"
 order += "cpu_usage"
 order += "disk /"
@@ -18,10 +19,12 @@ order += "ethernet _first_"
 order += "wireless _first_"
 order += "time"
 
-
+tztime holder__brightness{
+  format = "holder__brightness"
+}
 
 time {
-	format = "%d-%m-%Y %H:%M:%S"
+	format = "%a %d %H:%M"
 }
 
 wireless _first_ {
@@ -46,7 +49,7 @@ battery all {
 }
 
 disk / {
-	format = "D: %percentage_used/%total"
+	format = "/: %percentage_used"
 }
 
 cpu_usage {

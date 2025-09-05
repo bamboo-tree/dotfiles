@@ -3,29 +3,29 @@
 # Get date and time
 day=$(date '+%d')
 dayOfWeek=$(date '+%u')
-time=$(date '+%H:%M:%S')
+time=$(date '+%H:%M')
 
 case $dayOfWeek in
 	1)
-		dayOfWeek="MON"
+		dayOfWeek="Mon"
 		;;
 	2)
-		dayOfWeek="TUE"
+		dayOfWeek="Tue"
 		;;
 	3)
-		dayOfWeek="WED"
+		dayOfWeek="Wed"
 		;;
 	4)
-		dayOfWeek="THU"
+		dayOfWeek="Thu"
 		;;
 	5)
-		dayOfWeek="FRI"
+		dayOfWeek="Fri"
 		;;
 	6)
-		dayOfWeek="SAT"
+		dayOfWeek="Sat"
 		;;
 	7)
-		dayOfWeek="SUN"
+		dayOfWeek="Sun"
 		;;
 	*)
 		;;

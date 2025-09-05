@@ -198,7 +198,7 @@ bindsym $mod+r mode "resize"
 bar {
 	workspace_min_width 26px
 	
-	status_command i3blocks
+	status_command exec i3blocks
 	
 	colors {
     		background         $black

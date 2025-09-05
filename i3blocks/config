@@ -2,6 +2,14 @@
 separator=false
 separator_block_width=10
 
+[weather]
+command=~/.config/i3blocks/scripts/weather.sh
+interval=60
+
+[volume]
+command=~/.config/i3blocks/scripts/volume.sh
+interval=5
+
 [disk]
 command=~/.config/i3blocks/scripts/disk.sh
 interval=5
@@ -16,7 +24,7 @@ interval=5
 
 [brightness]
 command=~/.config/i3blocks/scripts/brightness.sh
-interval=repeat
+interval=5
 
 [battery]
 command=~/.config/i3blocks/scripts/battery.sh
@@ -24,4 +32,4 @@ interval=10
 
 [time]
 command=~/.config/i3blocks/scripts/date-time.sh
-interval=1
+interval=5

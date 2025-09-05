@@ -4,7 +4,7 @@ flag=$(acpi -b | grep -E -o '[CD]')
 battery=$(acpi -b | grep -E -o '[1]?[0-9][0-9]?%')
 remaining=$(acpi -b | grep -E -o '\s[0-9][0-9]:[0-9][0-9]?')
 
-if [ ${flag} != 'C' -a ${flag} != 'D' ]; then
+if [ ${flag} != 'C' ]; then
 	flag='B'
 fi
 
@@ -14,7 +14,7 @@ echo "${flag}: ${battery}${remaining}"
 echo "${battery}"
 
 # Set color indicators
-if [ ${flag} = 'D' ]; then
+if [ ${flag} = 'B' ]; then
 	if [ ${battery%?} -le 20 ]; then
 		echo "#1D1E2C"
 		echo "#FF1654"
