@@ -50,6 +50,8 @@ alias startlampp="sudo /opt/lampp/lampp start"
 alias stoplampp="sudo /opt/lampp/lampp stop"
 alias neofetch="fastfetch"
 alias now="date +'%H:%M:%S'"
+alias cns="xrandr --output HDMI-2 --auto --same-as eDP-1"
+
 # shell integrations
 eval "$(fzf --zsh)"
 
