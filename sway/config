@@ -1,252 +1,243 @@
-### PRE CONFIGURATION
+### I can't stand Wayland going back to safe X11 and i3, bye <3
 
-	# Set Win as mod button
-	set $mod Mod4
-	
-	# Your preferred terminal emulator
-	set $term kitty
 
+### Variables
 
-### APPEARANCE
+# Mod key.
+set $mod Mod4
 
-	# Font
-	font pango:Source Code Pro Bold 12
-
-	# Wallpaper
-	# output * bg ~/Pictures/Wallpaper/dark_stars_2.jpg fill
-
-	# Border
-	default_border pixel 2
-
-	# Gap
-	gaps inner 4
-
-	# Color palette
-	set $black #1D1E2C
-	set $white #F0E6EF
-	set $primary #CB9CF2
-	set $secondary #6C698D
-	set $green #7BE0AD
-	set $red #FF1654
-
-	# target                 title      bg     text    indicator  border
-	client.focused           $white		  $black $white  $secondary $primary
-	client.focused_inactive  $secondary $black $white  $black			$secondary
-	client.unfocused         $secondary $black $white  $black			$secondary
-	client.urgent            $red       $black $red		 $black		  $red
-	client.placeholder       $secondary $black $white  $black		  $secondary
-	client.background        $black
-
-
-### IDLE CONFIGURATION
-	exec swayidle -w \
-	timeout 300 'swaylock -f -c 000000 && swaymsg "output * power off"' \
-	resume 'swaymsg "output * power on"' \
-	before-sleep 'swaylock -f -c 000000 && swaymsg "output * power off"'
-
-
-### INPUT CONFIGURATION
-
-	input type:touchpad {
-		dwt enabled
-		tap enabled
-		natural_scroll enabled
-		middle_emulation enabled
-	}
-
-	input type:keyboard {
-		xkb_layout "pl"
-		xkb_model "pc101"
-		xkb_options caps:swapescape
-	}
-
-
-### KEY BINDINGS
-
-	# Start a terminal
-	bindsym $mod+Return exec $term
-
-	# Kill focused window
-	bindsym $mod+Shift+q kill
-
-	# Start rofi
-	bindsym $mod+d exec --no-startup-id rofi -show combi -icon-theme "Papirus" -show-icons
-
-	# Reload the configuration file
-	bindsym $mod+Shift+r reload
-
-	# Exit sway - logout
-	bindsym $mod+Shift+Return+q exec exit sway
-
-	# Start a browser
-	bindsym $mod+b exec firefox
-
-	# Calculator
-	bindsym $mod+c exec --no-startup gnome-calculator
-
-
-### NAVIGATION
-
-	# Vim homerow
-	set $left h
-	set $down j
-	set $up k
-	set $right l
-
-	# Move your focus around
-	bindsym $mod+$left focus left
-	bindsym $mod+$down focus down
-	bindsym $mod+$up focus up
-	bindsym $mod+$right focus right
-
-	# Move the focused window 
-	bindsym $mod+Shift+$left move left
-	bindsym $mod+Shift+$down move down
-	bindsym $mod+Shift+$up move up
-	bindsym $mod+Shift+$right move right
-
-
-### WORKSPACES
-
-	# Switch to workspace
-	bindsym $mod+1 workspace number 1
-	bindsym $mod+2 workspace number 2
-	bindsym $mod+3 workspace number 3
-	bindsym $mod+4 workspace number 4
-	bindsym $mod+5 workspace number 5
-	bindsym $mod+6 workspace number 6
-	bindsym $mod+7 workspace number 7
-	bindsym $mod+8 workspace number 8
-	bindsym $mod+9 workspace number 9
-	bindsym $mod+0 workspace number 10
-
-	# Cycle through workspaces
-	bindsym $mod+Right workspace next
-	bindsym $mod+Left workspace prev
-
-	# Move focused container to workspace
-	bindsym $mod+Shift+1 move container to workspace number 1
-	bindsym $mod+Shift+2 move container to workspace number 2
-	bindsym $mod+Shift+3 move container to workspace number 3
-	bindsym $mod+Shift+4 move container to workspace number 4
-	bindsym $mod+Shift+5 move container to workspace number 5
-	bindsym $mod+Shift+6 move container to workspace number 6
-	bindsym $mod+Shift+7 move container to workspace number 7
-	bindsym $mod+Shift+8 move container to workspace number 8
-	bindsym $mod+Shift+9 move container to workspace number 9
-	bindsym $mod+Shift+0 move container to workspace number 10
-
-
-### LAYOUT
-
-	# Split in horizontal orientation
-	bindsym $mod+g splith
-	# Split in vertical orientation
-	bindsym $mod+v splitv
-
-	# Switch the current container between different layout styles
-	bindsym $mod+s layout stacking
-	bindsym $mod+w layout tabbed
-	bindsym $mod+e layout toggle split
-
-	# Make the current focus fullscreen
-	bindsym $mod+f fullscreen
-
-	# Toggle the current focus between tiling and floating mode
-	bindsym $mod+Shift+space floating toggle
-
-	# Swap focus between the tiling area and the floating area
-	bindsym $mod+space focus mode_toggle
-
-	# Move focus to the parent container
-	bindsym $mod+a focus parent
-
-
-### SCRATCHPAD
-
-	# Move the currently focused window to the scratchpad
-	bindsym $mod+Shift+minus move scratchpad
-
-	# Show the next scratchpad window or hide the focused scratchpad window.
-	# If there are multiple scratchpad windows, this command cycles through them.
-	bindsym $mod+minus scratchpad show
-
-
-### FLOATING WINDOWS
-
-	for_window [class="gnome-calculator"] floating enable
-	for_window [class="org.gnome.Nautilus"] floating enable
-	for_window [class="loupe"] floating enable
-	for_window [class="org.gnome.Weather"] floating enable
-	for_window [class="TicTacToe"] floating enable
-	for_window [class="gnome-text-editor"] floating enable
-
-
-### RESIZING CONTAINERS
-
-	mode "resize" {
-		# Resize containers
-		bindsym $left resize shrink width 10px
-		bindsym $down resize shrink height 10px
-		bindsym $up resize grow height 10px
-		bindsym $right resize grow width 10px
-	
-		# Return to default mode
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
-	}
-
-	# Resize mode
-	bindsym $mod+r mode "resize"
-
-
-### UTILITIES
-
-	# Volume
-	bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-	bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-	bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-	bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
-
-	# Brightness
-	bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-	bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-
-	# Screenshot
-	bindsym Print exec --no-startup-id flameshot gui
-
-	# Shutdown
-	bindsym $mod+Shift+Home exec shutdown 0
-
-	# Logout
-	bindsym $mod+Home exec swaylock -f -c 000000 & sleep 0.5
-
-	# NetworkManager
-	exec --no-startup-id nm-applet
-
-
-### STATUS BAR
-
-	bar {
-		workspace_min_width 26px
-
-		# When the status_command prints a new line to stdout, swaybar updates.
-		# The default just shows the current date and time.
-		status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-	
-		colors {
-			background         $black
-			statusline         $secondary
-			focused_statusline $secondary
-			focused_separator  $black
-
-			# target           border    bg       text
-			focused_workspace  $primary  $black		$primary
-			active_workspace   $primary  $black		$white
-			inactive_workspace $black		 $black		$secondary
-			urgent_workspace   $red      $black   $red
-		}
-		status_command i3status
-	}
-
-	include /etc/sway/config.d/*
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Terminal emulator
+set $term kitty
+
+# Application launcher
+set $menu wmenu-run -f "DejaVu Sans Mono 11" -N 000103 -n FFFFFA -S FFFFFA -s 000103
+
+### Apperance
+
+# Font
+font pango:DejaVu Sans Mono Bold 11
+
+# Remove titlebar and set thin border
+default_border pixel 1
+
+# Gap between windows 8
+gaps inner 8
+
+# Color pallete
+set $black #000103
+set $white #FFFFFA
+set $gray1 #515052
+set $gray2 #333138
+set $red #FF312E
+
+# target                 title	bg     text    indicator  border
+client.focused           $white	$black $white  $gray2	  $white
+client.focused_inactive  $white	$black $white  $gray2	  $gray1
+client.unfocused         $white	$black $white  $gray2     $gray1
+client.urgent            $red	$black $red    $gray2 	  $red
+client.placeholder       $white	$black $white  $gray2     $gray1
+client.background        $black
+
+### Idle configuration
+
+exec swayidle -w \
+        timeout 300 'swaylock -f -c 000000' \
+        timeout 330 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+	before-sleep 'swaylock -f -c 000000'
+
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 30 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+### Input configuration
+
+input type:touchpad {
+	dwt enabled 
+	tap enabled
+	natural_scroll enabled
+	middle_emulation enabled
+}
+ 
+input type:keyboard {
+        xkb_layout "pl"
+	xkb_options "caps:escape"
+}
+ 
+### Key bindings
+
+# Basics:
+
+    # Start a terminal
+    bindsym $mod+Return exec $term
+
+    # Kill focused window
+    bindsym $mod+Shift+q kill
+
+    # Start your launcher
+    bindsym $mod+d exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+r reload
+
+    # Shutdown
+    bindsym $mod+Shift+Home exec shutdown 0
+
+    # Logout
+    bindsym $mod+Home exec swaylock --config $HOME/.config/swaylock/config
+
+# Moving around:
+
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # Or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # With arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+
+# Workspaces:
+
+    # Switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
+
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10
+
+# Layout stuff:
+
+    # Split
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+
+# Scratchpad:
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    bindsym $mod+minus scratchpad show
+
+# Resizing containers:
+
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # With arrow kwys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Utilities:
+    
+    # Special keys to adjust volume via PulseAudio
+    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+
+    # Special keys to adjust brightness via brightnessctl
+    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+    # Special key to take a screenshot
+    # bindsym Print exec flameshot gui 
+
+# Status Bar:
+
+bar {
+    height 20px
+    workspace_min_width 30px
+    position top
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+
+    colors {
+	background $black
+   	statusline $white
+    	focused_statusline $white
+    	focused_separator  $black
+
+    	# target           border    	bg       text
+	focused_workspace  $white	$black   $white
+    	active_workspace   $white	$black   $white
+    	inactive_workspace $gray1	$black   $gray1
+    	urgent_workspace   $red		$black   $red 
+    }
+}
+
+include /etc/sway/config.d/*

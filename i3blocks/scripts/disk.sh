@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # root disk usage
-disk=$(df | grep '/dev/nvme0n1p2' | awk '{print $5}')
+disk=$(df | grep '/dev/nvme0n1p3' | awk '{print $5}')
 
 # Full output
 echo "/: ${disk}"

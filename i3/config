@@ -1,215 +1,234 @@
-# Set Win as mod button
+### Variables
+
+# Mod key
 set $mod Mod4
 
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Color pallete
+set $black	#000103
+set $white	#FFFFFA
+set $gray1	#515052
+set $gray2	#333138
+set $red	#FF312E
+
+# Terminal
+set $term kitty
+
+# Aplication launcher
+set $menu dmenu_run -fn "DejaVuSansMono-11" -nb "#000103" -nf "#FFFFFA" -sb "#FFFFFA" -sf "#000103"
+
+# Browser
+set $browser firefox
+
+# Refresh i3status on change
+set $refresh_i3status killall -SIGUSR1 i3status
+
+
+### Apperance
+
 # Font
-font pango:Source Code Pro Bold 12
+font pango:DejaVu Sans Mono Bold 11
 
 # Remove titlebar and set thin border
-default_border pixel 2
-# Gap between windows 8, outside 2
+default_border pixel 1
+
+# Gap between windows
 gaps inner 8
-gaps outer -6
 
-# New custom pallete
-set $black #1D1E2C
-set $white #F0E6EF
-set $primary #CB9CF2
-set $secondary #6C698D
-set $green #7BE0AD
-set $red #FF1654
+#target			title	bg	text	indicator	border
+client.focused		$white	$black	$white	$gray2		$white
+client.focused_inactive	$white	$black	$white	$gray2		$gray1	
+client.unfocused	$white	$black	$white	$gray2		$gray1
+client.urgent		$red	$black	$red	$gray2		$red
+client.placeholder	$white	$black	$white	$gray2		$gray1
+client.background	$black
 
 
-# target                 title      bg     text    indicator  border
-client.focused           $white		  $black $white  $secondary $primary
-client.focused_inactive  $secondary $black $white  $black			$secondary
-client.unfocused         $secondary $black $white  $black			$secondary
-client.urgent            $red       $black $red		 $black		  $red
-client.placeholder       $secondary $black $white  $black		  $secondary
-client.background        $black
+### Idle configuration
 
-# Wallpaper
-exec xset --no-startup-id feh --bg-scale /home/maciej/Pictures/Wallpaper/manai.png
+# Lock screen after 300s of inactivity
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 000000 --nofork
+exec --no-startup-id xset s 300 300
+exec --no-startup-id xset +dpms
 
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
 
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+### Key bindings
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# Basic:
 
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% 
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+	# Start terminal
+	bindsym $mod+Return exec $term
+	
+	# Kill focused window
+	bindsym $mod+Shift+q kill
 
-# Brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+	# Start app launcher
+	bindsym $mod+d exec --no-startup-id $menu
 
-# Shutdown
-bindsym $mod+shift+Home exec shutdown 0
-bindsym $mod+Home exec "i3lock --color 000000"
+	# Drag floating windows
+	floating_modifier $mod
 
-# Other apps 
-bindsym $mod+c exec --no-startup-id gnome-calculator
-bindsym Print exec --no-startup-id flameshot gui
+	# Reload configuration file
+	bindsym $mod+Shift+r reload
 
-# xprop | grep WM_CLASS
-# Floating apps
-for_window [class="gnome-calculator"] floating enable
-for_window [class="org.gnome.Nautilus"] floating enable
-for_window [class="loupe"] floating enable
-for_window [class="org.gnome.Weather"] floating enable
-for_window [class="TicTacToe"] floating enable
-for_window [class="gnome-text-editor"] floating enable
+	# Shutdown
+	bindsym $mod+Shift+Home exec systemctl poweroff
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+	# Lock screen
+	bindsym $mod+Home exec i3lock -c 000000 & xset dpms force off
 
-# move tiling windows via drag & drop by left-clicking into the title bar,
-# or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag modifier titlebar
+# Moving around:
 
-# start a terminal
-bindsym $mod+Return exec kitty
-bindsym $mod+b exec firefox
+	# Change focus
+	bindsym $mod+$left focus left
+	bindsym $mod+$down focus down
+	bindsym $mod+$up focus up
+	bindsym $mod+$right focus right	
 
-# kill focused window
-bindsym $mod+shift+q kill
+	# Move focused window
+	bindsym $mod+Shift+$left move left
+	bindsym $mod+Shift+$down move down
+	bindsym $mod+Shift+$up move up
+	bindsym $mod+Shift+$right move right
 
-# start rofi
-bindsym $mod+d exec --no-startup-id rofi -show combi -icon-theme "Papirus" -show-icons
+# Workspaces:
 
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+	# Define names for default workspaces
+	set $ws1 "1"
+	set $ws2 "2"
+	set $ws3 "3"
+	set $ws4 "4"
+	set $ws5 "5"
+	set $ws6 "6"
+	set $ws7 "7"
+	set $ws8 "8"
+	set $ws9 "9"
+	set $ws10 "10"
 
-# move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+	# Switch to workspace
+	bindsym $mod+1 workspace number $ws1
+	bindsym $mod+2 workspace number $ws2
+	bindsym $mod+3 workspace number $ws3
+	bindsym $mod+4 workspace number $ws4
+	bindsym $mod+5 workspace number $ws5
+	bindsym $mod+6 workspace number $ws6
+	bindsym $mod+7 workspace number $ws7
+	bindsym $mod+8 workspace number $ws8
+	bindsym $mod+9 workspace number $ws9
+	bindsym $mod+0 workspace number $ws10
+	
+	# Move focused container to workspace
+	bindsym $mod+Shift+1 move container to workspace number $ws1
+	bindsym $mod+Shift+2 move container to workspace number $ws2
+	bindsym $mod+Shift+3 move container to workspace number $ws3
+	bindsym $mod+Shift+4 move container to workspace number $ws4
+	bindsym $mod+Shift+5 move container to workspace number $ws5
+	bindsym $mod+Shift+6 move container to workspace number $ws6
+	bindsym $mod+Shift+7 move container to workspace number $ws7
+	bindsym $mod+Shift+8 move container to workspace number $ws8
+	bindsym $mod+Shift+9 move container to workspace number $ws9
+	bindsym $mod+Shift+0 move container to workspace number $ws10
+	
+# Layout stuff:
+	
+	# Split
+	bindsym $mod+b split h
+	bindsym $mod+v split v
 
-# split in horizontal orientation
-bindsym $mod+g split h
+	# Change container layout (stacked, tabbed, toggle split)
+	bindsym $mod+s layout stacking
+	bindsym $mod+w layout tabbed
+	bindsym $mod+e layout toggle split
 
-# split in vertical orientation
-bindsym $mod+v split v
+	# Fullscreen
+	bindsym $mod+f fullscreen
 
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+	# Toggle tiling / floating
+	bindsym $mod+Shift+space floating toggle
+	
+	# Change focus between tiling / floating windows
+	bindsym $mod+space focus mode_toggle
+	
+	# Focus the parent container
+	bindsym $mod+a focus parent
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# Scratchpad:
+	
+	# Move focused window to the scratch[ad
+	bindsym $mod+Shift+minus move scratchpad
+	
+	# Show the next scratchpad window or hide the focused scratchpad window
+	bindsym $mod+minus scratchpad show	
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+# Resizing:
+	
+	# Resize mode
+	mode "resize" {
+	        # Pressing left will shrink the window’s width.
+	        # Pressing right will grow the window’s width.
+	        # Pressing up will shrink the window’s height.
+	        # Pressing down will grow the window’s height.
+	        bindsym $left       resize shrink width 10 px
+	        bindsym $down       resize grow height 10 px
+	        bindsym $up         resize shrink height 10 px
+	        bindsym $right      resize grow width 10 px
+	
+	        # Return to default mode
+	        bindsym Return mode "default"
+	        bindsym Escape mode "default"
+	}
 
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+	# Enter resize mode
+	bindsym $mod+r mode "resize"
 
-# focus the parent container
-bindsym $mod+a focus parent
+# Utilities:
 
-# focus the child container
-#bindsym $mod+d focus child
+	# Volume
+	bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+	bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+	bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+	# Microphone
+	bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+	
+	# Brightness
+	bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 5%+
+	bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
-# switch to workspace
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
+# Quick launch other apps
 
-# cycle through workspace
-bindsym $mod+Right workspace next
-bindsym $mod+Left workspace prev
+	# Browser (mod+,)
+	bindsym $mod+comma exec --no-startup-id $browser
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
+	# Discord
+	bindsym $mod+period exec --no-startup-id discord
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Escape+Shift+q exec i3-msg exit
+### Status bar:
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize grow width 5 px or 5 ppt
-        bindsym j resize shrink height 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink width 5 px or 5 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
-
-bindsym $mod+r mode "resize"
-
-# Start status bar
 bar {
-	workspace_min_width 26px
-	
-	status_command exec i3blocks
-	
-	colors {
-    		background         $black
-    		statusline         $secondary
-    		focused_statusline $secondary
-    		focused_separator  $black
+	# Indicators from i3status
+        status_command i3blocks
 
-    		# target           border    bg       text
-	    	focused_workspace  $primary  $black		$primary
-    		active_workspace   $primary  $black		$white
-    		inactive_workspace $black		 $black		$secondary
-    		urgent_workspace   $red      $black   $red
-  	}
+	# Styling
+	height 20
+	workspace_min_width 30px
+	position top
+
+	colors {
+		background		$black
+		statusline		$white
+		focused_statusline	$white
+		focused_separator	$black
+
+		# target		border	bg	text
+		focused_workspace	$white	$black	$white
+		active_workspace	$white	$black	$white
+		inactive_workspace	$gray1	$black	$gray1
+		urgent_workspace	$red	$black	$red
+	}
 }
