@@ -5,31 +5,31 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# directory for zinit and plugins
+# Directory for zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-# download zinit
+
+# Download zinit id needed
 if [ ! -d "$ZINIT_HOME" ]; then
   mkdir -p "$(dirname $ZINIT_HOME)"
   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
-
 source "${ZINIT_HOME}/zinit.zsh"
 
-# add powerlevel10k
+# PowerLevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-# plugins
+# Plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 
-# snippets
-zinit snippet OMZP::git
+# Snippets
+# zinit snippet OMZP::git
 
-# load completions
+# Load completions
 autoload -U compinit && compinit
 
-# completion style
+# Completion style
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
@@ -38,29 +38,20 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# aliases
+# Aliases
 alias ls="ls --color=always"
-alias la="ls -a --color=always"
-alias ll="ls -l --color=always"
 alias sl="sl -d -w"
-alias note="cd ~/Documents/notes && nvim ."
-alias syu="sh ~/my-scripts/update"
-alias brightness="sh ~/my-scripts/brightness"
-alias startlampp="sudo /opt/lampp/lampp start"
-alias stoplampp="sudo /opt/lampp/lampp stop"
-alias neofetch="fastfetch"
-alias now="date +'%H:%M:%S'"
 alias cns="xrandr --output HDMI-2 --auto --same-as eDP-1"
 
-# shell integrations
+# Shell integrations
 eval "$(fzf --zsh)"
 
-# keybinds
+# Keybinds
 bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
-# history
+# History
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE

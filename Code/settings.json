@@ -1,7 +1,7 @@
 {
   // Theme settings
   "editor.fontSize": 14,
-  "editor.fontFamily": "'Source Code Pro Medium', 'monospace', monospace",
+  "editor.fontFamily": "'Hack Nerd Font Mono', 'monospace', monospace",
   "editor.fontWeight": "600",
   "workbench.iconTheme": "symbols",
   // view settings
@@ -19,5 +19,6 @@
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   // vim
-  "keyboard.dispatch": "keyCode"
+  "keyboard.dispatch": "keyCode",
+  "workbench.colorTheme": "Houston"
 }

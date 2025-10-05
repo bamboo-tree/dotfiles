@@ -2,9 +2,9 @@
 separator=false
 separator_block_width=10
 
-[weather]
-command=~/.config/i3blocks/scripts/weather.sh
-interval=60
+# [weather]
+# command=~/.config/i3blocks/scripts/weather.sh
+# interval=60
 
 [volume]
 command=~/.config/i3blocks/scripts/volume.sh
