@@ -1,15 +1,15 @@
 {
-  // Theme settings
-  "editor.fontSize": 14,
   "editor.fontFamily": "'Hack Nerd Font Mono', 'monospace', monospace",
   "editor.fontWeight": "600",
   "workbench.iconTheme": "symbols",
+  "workbench.preferredDarkColorTheme": "Gruvbox Dark Hard",
+  "workbench.preferredLightColorTheme": "Gruvbox Light Medium",
+  "workbench.colorTheme": "Gruvbox Light Hard",
   // view settings
   "editor.minimap.enabled": false,
-  "breadcrumbs.enabled": false,
   "editor.renderWhitespace": "all",
-  "editor.tabSize": 4,
-  "window.zoomLevel": 0,
+  "editor.tabSize": 2,
+  "window.zoomLevel": 1,
   // some babysitting
   "symbols.hidesExplorerArrows": false,
   "explorer.confirmDelete": false,
@@ -20,5 +20,21 @@
   "editor.formatOnPaste": true,
   // vim
   "keyboard.dispatch": "keyCode",
-  "workbench.colorTheme": "Houston"
+  "editor.lineNumbers": "relative",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.tabCompletion": "on",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.openRepositoryInParentFolders": "never",
+  "git.autofetch": true,
+  "chat.disableAIFeatures": true
 }

@@ -208,6 +208,8 @@ exec --no-startup-id xset +dpms
 	# Discord
 	bindsym $mod+period exec --no-startup-id discord
 
+	# Flameshot
+	bindsym Print exec --no-startup-id flameshot gui
 ### Status bar:
 
 bar {
