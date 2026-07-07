@@ -1,0 +1,7 @@
+@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
+
+window {
+    modi: "window,drun";
+    font: "IBM Plex Mono 14";
+    combi-modi: "window,drun,ssh";
+}
