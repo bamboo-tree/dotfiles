@@ -9,10 +9,12 @@ Files or directories that should be linked to `~/.config/`:
 - `rofi`
 - `sway`
 - `swaylock`
+- `gtk-3.0`
 
 Files or directories that should be linked to `~/`:
 
 - `vimrc` ==> `.vimrc`
+- `Xresources` ==> `.Xresources`
 
 Other destinations:
 
