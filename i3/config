@@ -29,7 +29,7 @@ set $lock ~/.config/i3/lock.sh
 ### Idle configuration
     exec --no-startup-id xidlehook \
         --not-when-fullscreen \
-        --timer 600 $lock '' \
+        --timer 600 '$lock' '' \
         --timer 720 'systemctl suspend' ''
 
     exec --no-startup-id xss-lock \

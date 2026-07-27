@@ -41,8 +41,13 @@ battery_info() {
     local background=$blank
     
     if [[ $status == "C" ]]; then # charging
-        full_text="$status: $percentage $btime"
-        color=$green4
+        if [[ $percentage == "100%" ]]; then # fully charged but still charging
+            full_text="$status: $percentage"
+            color=$green3
+        else
+            full_text="$status: $percentage $btime"
+            color=$green4
+        fi
     fi
     if [[ $status == "D" ]]; then # discharging
         full_text="$status: $percentage $btime"
