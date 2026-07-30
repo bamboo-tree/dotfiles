@@ -15,6 +15,7 @@ Files or directories that should be linked to `~/`:
 
 - `vimrc` ==> `.vimrc`
 - `Xresources` ==> `.Xresources`
+- `bashrc` ==> `.bashrc`
 
 Other destinations:
 
@@ -27,4 +28,5 @@ Other destinations:
 
 **Please DON'T use Wayland**
 
-The best symlink command (so far) is: `ln -rs TARGET DIRECTORY`. Where `TARGET` is **the** file or direcotory to be referenced and `DIRECTORY` is the *proper* file or directory location.
+The best symlink command (so far) is: `ln -rs TARGET DIRECTORY`. Where `TARGET` is **the** file or
+direcotory to be referenced and `DIRECTORY` is the *proper* file or directory location.
