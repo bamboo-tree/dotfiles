@@ -8,7 +8,6 @@ require("pastel").setup({
   style = {
     transparent = false,
     inactive = true,
-    border = true,
     float = true,
     border = true,
     bold = true,

@@ -1,2 +1,2 @@
 -- Set colorscheme
-vim.cmd.colorscheme "pastelcream"
+vim.cmd.colorscheme "gruvbox"

@@ -9,7 +9,7 @@ local function treesitter_try_attach(buf, language)
     vim.treesitter.start(buf, language)
 
     local has_indent_query = vim.treesitter.query.get(language, "indents") ~= nil
-    if has_indent_query then vim.bo.indentexpr = "v:lua.require"nvim-treesitter".indentexpr()" end
+    if has_indent_query then vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" end
 end
 
 local available_parsers = require("nvim-treesitter").get_available()

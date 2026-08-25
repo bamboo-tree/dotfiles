@@ -1,5 +1,6 @@
 -- Themes
 vim.pack.add { "https://github.com/ankushbhagats/pastel.nvim" }
+vim.pack.add { "https://github.com/ellisonleao/gruvbox.nvim" }
 
 -- UI/UX
 vim.pack.add { "https://github.com/NMAC427/guess-indent.nvim" }
@@ -8,6 +9,7 @@ vim.pack.add { "https://github.com/folke/which-key.nvim" }
 vim.pack.add { "https://github.com/folke/todo-comments.nvim" }
 vim.pack.add { "https://github.com/nvim-mini/mini.nvim" }
 vim.pack.add { "https://github.com/nvim-tree/nvim-web-devicons" }
+vim.pack.add { "https://github.com/rachartier/tiny-inline-diagnostic.nvim" }
 
 -- Telescope + dependencies
 vim.pack.add {
@@ -36,6 +38,7 @@ vim.pack.add {
     "https://github.com/MunifTanjim/nui.nvim",
     "https://github.com/mfussenegger/nvim-dap",
     "https://github.com/nvim-java/nvim-java",
+    "https://github.com/nanotee/sqls.nvim"
 }
 
 -- Formating, autocompletion, snippets
