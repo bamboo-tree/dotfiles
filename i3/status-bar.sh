@@ -31,7 +31,7 @@ battery_info() {
     local percentage=$("$acpi_out" | awk -F", " '{print $2}')
     local btime=$("$acpi_out" | awk -F" " '{print $5}')
     if [[ $btime == "discharging" ]]; then
-        btime="??:??" 
+        btime="??:??"
     else
         btime="${btime%:*}"
     fi
@@ -39,7 +39,7 @@ battery_info() {
     local full_text=""
     local color=""
     local background=$blank
-    
+
     if [[ $status == "C" ]]; then # charging
         if [[ $percentage == "100%" ]]; then # fully charged but still charging
             full_text="$status: $percentage"
@@ -119,6 +119,45 @@ mic_info() {
     printf '{"full_text":"%s","color":"%s","background":"%s"}' "$full_text" "$color" "$background"
 }
 
+cpu() {
+    local percentage=$(top -bn1 | grep '%Cpu' | tail -1 | grep -P '(....|...) id' | awk '{ print 100-$8 }')
+
+    local full_text="CPU: $percentage%"
+    local color=$green4
+    local background=$blank
+
+    if (( $(echo "$percentage > 80 " | bc -l) )); then
+        color=$green3
+        background=$green5
+    elif (( $(echo "$percentage > 50 " | bc -l) )); then
+        color=$green5
+        background=$green3
+    fi
+
+    printf '{"full_text":"%s","color":"%s","background":"%s"}' "$full_text" "$color" "$background"
+}
+
+mem() {
+    local total=$(free | grep "Mem" | awk '{ print $2 }')
+    local used=$(free | grep "Mem" | awk '{ print $3 }')
+
+    local percentage=$(echo "scale=1; $used*100/$total" | bc)
+
+    local full_text="MEM: $percentage%"
+    local color=$green4
+    local background=$blank
+
+    if (( $(echo "$percentage > 80 " | bc -l) )); then
+        color=$green3
+        background=$green5
+    elif (( $(echo "$percentage > 50 " | bc -l) )); then
+        color=$green5
+        background=$green3
+    fi
+
+    printf '{"full_text":"%s","color":"%s","background":"%s"}' "$full_text" "$color" "$background"
+}
+
 ####################################################################################################
 
 json_prefix
@@ -129,6 +168,10 @@ while true; do
     mic_info
     printf ','
     battery_info
+    printf ','
+    mem
+    printf ','
+    cpu
     printf ','
     brightness_info
     printf ','
