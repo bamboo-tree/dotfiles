@@ -1,12 +1,31 @@
 #!/bin/bash
 
-green1="#020202"
-green2="#0D2818"
-green3="#04471C"
-green4="#058C42"
-green5="#16DB65"
-white="#FFFFFF"
-blank="#00000000"
+bg_1="#303030"
+bg_2="#202020"
+bg_3="#000000"
+
+fg_1="#909090"
+fg_2="#B0B0B0"
+fg_3="#F0F0F0"
+
+red="#F03020"
+green="#10F060"
+yellow="#E0F000"
+blue="#2080F0"
+purple="#F020E0"
+aqua="#20F0F0"
+orange="#F08020"
+gray="#707070"
+
+red_2="#C00000"
+green_2="#00B000"
+yellow_2="#D0A000"
+blue_2="#1010D0"
+purple_2="#A00080"
+aqua_2="#20B0B0"
+orange_2="#C05010"
+gray_2="#404040"
+
 
 json_prefix() {
     printf '{ "version": 1 }\n[\n'
@@ -14,14 +33,20 @@ json_prefix() {
 
 date_info() {
     local full_text=$(date '+%d/%m')
+    local color=$fg_2
+    local background=$bg_3
 
-    printf '{"full_text":"%s","color":"%s"}' "$full_text" "$green4"
+    printf '{"full_text":"%s","color":"%s","background":"%s"}' "$full_text" "$color" "$background"
 }
 
 time_info() {
     local full_text=$(date '+%H:%M:%S')
+    local color=$bg_2
+    local background=$fg_2
 
-    printf '{"full_text":"%s","color":"%s", "background":"%s"}' " $full_text " "$green5" "$green3"
+    full_text=" $full_text " # add extra padding
+
+    printf '{"full_text":"%s","color":"%s","background":"%s"}' "$full_text" "$color" "$background"
 }
 
 battery_info() {
@@ -38,32 +63,34 @@ battery_info() {
 
     local full_text=""
     local color=""
-    local background=$blank
+    local background=$bg_3
 
     if [[ $status == "C" ]]; then # charging
         if [[ $percentage == "100%" ]]; then # fully charged but still charging
             full_text="$status: $percentage"
-            color=$green3
         else
             full_text="$status: $percentage $btime"
-            color=$green4
         fi
+        color=$aqua_2
     fi
     if [[ $status == "D" ]]; then # discharging
         full_text="$status: $percentage $btime"
-        color=$green5
+        color=$yellow_2
     fi
     if [[ $status == "N" ]]; then # not charging
         full_text="$status: $percentage"
-        color=$green3
+        color=$fg_1
     fi
 
     local percent=${percentage%\%}
-    if [[ $percent =~ ^[0-9]+$ ]] && (( percent < 20 )); then
+    if [[ $percent =~ ^[0-9]+$ ]] && (( percent <= 30 )); then
         local seconds=$((10#$(date '+%S')))
         if (( seconds % 2 == 0 )); then
-            background=$green5
-            color=$green2
+            background=$red_2
+            color=$bg_3
+        else
+            background=$bg_3
+            color=$red_2
         fi
     fi
 
@@ -73,8 +100,10 @@ battery_info() {
 brightness_info() {
     local brightness=$(brightnessctl -m | awk -F"," '{print $4}')
     local full_text="S: $brightness"
+    local color=$blue
+    local background=$bg_3
 
-    printf '{"full_text":"%s","color":"%s"}' "$full_text" "$green4"
+    printf '{"full_text":"%s","color":"%s","background":"%s"}' "$full_text" "$color" "$background"
 }
 
 volume_info() {
@@ -82,18 +111,19 @@ volume_info() {
     local mute=$(pactl get-sink-mute @DEFAULT_SINK@ | awk -F": " '{print $2}')
 
     local full_text=""
-    local color=$green4
-    local background=$blank
+    local color=$purple
+    local background=$bg_3
 
     if [[ $mute == "yes" ]]; then
         full_text="M: $volume"
-        color=$green3
+        color=$purple_2
     else
         full_text="A: $volume"
-        color=$green4
+        color=$purple
         local percent=${volume%\%}
         if (( percent > 100 )); then
-            background=$green2
+            color=$bg_2
+            background=$red
         fi
     fi
 
@@ -104,16 +134,16 @@ mic_info() {
     local mute=$(pactl get-source-mute @DEFAULT_SOURCE@ | awk -F": " '{print $2}')
 
     local full_text=""
-    local color=$green4
-    local background=$blank
+    local color=$red
+    local background=$bg_3
 
     if [[ $mute == "yes" ]]; then
         full_text="OFF"
-        color=$green3
+        color=$fg_1
     else
         full_text=" ON "
-        color=$green5
-        background=$green2
+        color=$bg_2
+        background=$red
     fi
 
     printf '{"full_text":"%s","color":"%s","background":"%s"}' "$full_text" "$color" "$background"
@@ -123,15 +153,13 @@ cpu() {
     local percentage=$(top -bn1 | grep '%Cpu' | tail -1 | grep -P '(....|...) id' | awk '{ print 100-$8 }')
 
     local full_text="CPU: $percentage%"
-    local color=$green4
-    local background=$blank
+    local color=$green_2
+    local background=$bg_3
 
     if (( $(echo "$percentage > 80 " | bc -l) )); then
-        color=$green3
-        background=$green5
-    elif (( $(echo "$percentage > 50 " | bc -l) )); then
-        color=$green5
-        background=$green3
+        color=$red_2
+    elif (( $(echo "$percentage > 60 " | bc -l) )); then
+        color=$orange_2
     fi
 
     printf '{"full_text":"%s","color":"%s","background":"%s"}' "$full_text" "$color" "$background"
@@ -144,15 +172,13 @@ mem() {
     local percentage=$(echo "scale=1; $used*100/$total" | bc)
 
     local full_text="MEM: $percentage%"
-    local color=$green4
-    local background=$blank
+    local color=$green_2
+    local background=$bg_3
 
     if (( $(echo "$percentage > 80 " | bc -l) )); then
-        color=$green3
-        background=$green5
-    elif (( $(echo "$percentage > 50 " | bc -l) )); then
-        color=$green5
-        background=$green3
+        color=$red_2
+    elif (( $(echo "$percentage > 60 " | bc -l) )); then
+        color=$orange_2
     fi
 
     printf '{"full_text":"%s","color":"%s","background":"%s"}' "$full_text" "$color" "$background"

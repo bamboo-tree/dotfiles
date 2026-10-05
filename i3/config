@@ -121,34 +121,62 @@ bindsym $mod+r mode "resize"
     # Special key to take a screenshot with grim
     bindsym Print exec grim
 
+### Colors:
+# bg_1="#303030"
+# bg_2="#202020"
+# bg_3="#000000"
+
+# fg_1="#909090"
+# fg_2="#B0B0B0"
+# fg_3="#F0F0F0"
+
+# red="#F03020"
+# green="#10F060"
+# yellow="#E0F000"
+# blue="#2080F0"
+# purple="#F020E0"
+# aqua="#20F0F0"
+# orange="#F08020"
+# gray="#707070"
+
+# red_2="#C00000"
+# green_2="#00B000"
+# yellow_2="#D0A000"
+# blue_2="#1010D0"
+# purple_2="#A00080"
+# aqua_2="#20B0B0"
+# orange_2="#C05010"
+# gray_2="#404040"
+
 ### Apperance:
     default_border pixel 2
     gaps top 2
+    font pango:IBM Plex Mono Semibold 12
+
     # type                      border      background  text        indicator   child_border
-    client.focused              #ffffff     #000000     #ffffff     #16DB65     #058C42
-    client.focused_inactive     #ffffff     #000000     #ffffff     #058C42     #04471C
-    client.placeholder          #ffffff     #000000     #ffffff     #04471C     #04471C
-    client.unfocused            #ffffff     #000000     #ffffff     #04471C     #0D2818
-    client.urgent               #ffffff     #000000     #ffffff     #16DB65     #16DB65
-    # Green oasis: #020202, #0D2818, #04471C, #058C42, #16DB65
+    client.focused              #FFFFFF     #000000     #10F060     #00B000     #10F060
+    client.focused_inactive     #FFFFFF     #000000     #20F0F0     #20B0B0     #20F0F0
+    client.placeholder          #FFFFFF     #000000     #ffffff     #04471C     #04471C
+    client.unfocused            #FFFFFF     #000000     #909090     #303030     #909090
+    client.urgent               #FFFFFF     #000000     #F03020     #C00000     #F03020
 
 ### Status Bar:
 bar {
     position top
     font pango:IBM Plex Mono Semibold 12
-	workspace_min_width 32
+    workspace_min_width 32
     status_command $HOME/.config/i3/status-bar.sh
-    
+
     # Click tray icons
     tray_output primary
 
     colors {
-		background			#020202
-        statusline			#FFFFFF
-		separator			#04471C
-		focused_workspace	#16DB65	#0D2818	#16DB65
-		active_workspace	#058C42	#04471C	#058C42
-		inactive_workspace	#04471C	#0D2818	#04471C
-		urgent_workspace	#0D2818	#16DB65	#0D2818
+        background              #000000
+        statusline              #F0F0F0
+        separator               #303030
+        focused_workspace       #10F060     #000000     #10F060
+        active_workspace        #20F0F0     #000000     #20F0F0
+        inactive_workspace      #909090     #000000     #909090
+        urgent_workspace        #F03020     #000000     #F03020
     }
 }
