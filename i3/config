@@ -10,11 +10,13 @@ set $term kitty
 set $menu rofi -show drun
 set $browser firefox
 set $lock ~/.config/i3/lock.sh
+set $printscreen flameshot gui
 
 ### Shortcut application launcher
     bindsym $mod+Return exec $term
     bindsym $mod+comma exec $browser
     bindsym $mod+d exec $menu
+    bindsym $mod+Print exec $printscreen
 
 ### Basic operations
     # Shutdown
@@ -48,6 +50,9 @@ set $lock ~/.config/i3/lock.sh
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
+
+### Float mode:
+    for_window[class="flameshot"] floating enable
 
 ### Workspaces:
     # Switch to workspace
@@ -142,7 +147,7 @@ bindsym $mod+r mode "resize"
 # red_2="#C00000"
 # green_2="#00B000"
 # yellow_2="#D0A000"
-# blue_2="#1010D0"
+# blue_2="#1060E0"
 # purple_2="#A00080"
 # aqua_2="#20B0B0"
 # orange_2="#C05010"
@@ -154,11 +159,11 @@ bindsym $mod+r mode "resize"
     font pango:IBM Plex Mono Semibold 12
 
     # type                      border      background  text        indicator   child_border
-    client.focused              #FFFFFF     #000000     #10F060     #00B000     #10F060
-    client.focused_inactive     #FFFFFF     #000000     #20F0F0     #20B0B0     #20F0F0
-    client.placeholder          #FFFFFF     #000000     #ffffff     #04471C     #04471C
-    client.unfocused            #FFFFFF     #000000     #909090     #303030     #909090
-    client.urgent               #FFFFFF     #000000     #F03020     #C00000     #F03020
+    client.focused              #00B000     #000000     #10F060     #00B000     #10F060
+    client.focused_inactive     #20B0B0     #000000     #20F0F0     #20B0B0     #20F0F0
+    client.placeholder          #04471C     #000000     #ffffff     #04471C     #04471C
+    client.unfocused            #303030     #000000     #909090     #303030     #909090
+    client.urgent               #C00000     #000000     #F03020     #C00000     #F03020
 
 ### Status Bar:
 bar {
