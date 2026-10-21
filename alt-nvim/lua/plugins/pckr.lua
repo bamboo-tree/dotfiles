@@ -29,6 +29,19 @@ require("pckr").add {
 
     -- Navigation
     { "MunifTanjim/nui.nvim" },
-    { "nvim-neo-tree/neo-tree.nvim" }
+    { "nvim-neo-tree/neo-tree.nvim" },
 
+    -- LSP tools
+    { "neovim/nvim-lspconfig" },
+    { "mason-org/mason.nvim" },
+    { "mason-org/mason-lspconfig.nvim" },
+    { "WhoIsSethDaniel/mason-tool-installer.nvim" },
+    { "folke/lazydev.nvim" },
+    { "j-hui/fidget.nvim" },
+
+    -- LSPs
+    { "JavaHello/spring-boot.nvim" },
+    { "MunifTanjim/nui.nvim" },
+    { "mfussenegger/nvim-dap" },
+    { "nvim-java/nvim-java" },
 }

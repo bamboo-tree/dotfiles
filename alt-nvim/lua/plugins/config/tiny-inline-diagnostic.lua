@@ -1,6 +1,6 @@
 require("tiny-inline-diagnostic").setup({
     -- Available: "modern", "classic", "minimal", "powerline", "ghost", "simple", "nonerdfont", "amongus"
-    preset = "simple",
+    preset = "powerline",
     transparent_bg = false,
     transparent_cursorline = true,
     hi = {
