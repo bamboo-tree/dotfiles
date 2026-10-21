@@ -1,5 +1,19 @@
 -- Ensure basic parsers are installed
-local parsers = { "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "markdown_inline", "query", "vim", "vimdoc" }
+local parsers = {
+    "bash",
+    "c",
+    "diff",
+    "html",
+    "lua",
+    "luadoc",
+    "markdown",
+    "markdown_inline",
+    "query",
+    "vim",
+    "vimdoc",
+    "java",
+    "python"
+}
 
 require("nvim-treesitter").install(parsers)
 

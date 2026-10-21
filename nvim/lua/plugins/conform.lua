@@ -4,6 +4,7 @@ require("conform").setup {
         local enabled_filetypes = {
             lua = true,
             java = true,
+            python = true,
         }
         if enabled_filetypes[vim.bo[bufnr].filetype] then
             return { timeout_ms = 500 }
@@ -17,5 +18,5 @@ require("conform").setup {
     formatters_by_ft = {},
 }
 
-vim.keymap.set({ "n", "v" }, "<leader>f", function() require("conform").format { async = true } end, { desc = "[F]ormat buffer" })
-
+vim.keymap.set({ "n", "v" }, "<leader>f", function() require("conform").format { async = true } end,
+    { desc = "[F]ormat buffer" })

@@ -83,6 +83,10 @@
       "rev": "2ae6958df7ced50baac5035cec0c15799eedfbf7",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
+    "papercolor-theme": {
+      "rev": "0cfe64ffb24c21a6101b5f994ca342a74c977aef",
+      "src": "https://github.com/NLKNguyen/papercolor-theme"
+    },
     "pastel.nvim": {
       "rev": "c2423b7c391cf49c8eab39a6e0e3770a49e01f22",
       "src": "https://github.com/ankushbhagats/pastel.nvim"
@@ -90,6 +94,10 @@
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "space-vim-dark": {
+      "rev": "0ab698bd2a3959e3bed7691ac55ba4d8abefd143",
+      "src": "https://github.com/liuchengxu/space-vim-dark"
     },
     "spring-boot.nvim": {
       "rev": "218c0c26c14d99feca778e4d13f5ec3e8b1b60f0",

@@ -1,5 +1,3 @@
-require("plugins.pastel")
-require("plugins.gruvbox")
 require("plugins.guess-indent")
 require("plugins.which-key")
 require("plugins.todo-comments")
@@ -13,3 +11,5 @@ require("plugins.conform")
 require("plugins.luasnip")
 require("plugins.blink")
 require("plugins.tiny-inline-diagnostic")
+
+vim.opt.rtp:prepend("~/Projects/pearly.nvim")

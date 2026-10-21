@@ -1,6 +1,4 @@
 -- Themes
-vim.pack.add { "https://github.com/ankushbhagats/pastel.nvim" }
-vim.pack.add { "https://github.com/ellisonleao/gruvbox.nvim" }
 
 -- UI/UX
 vim.pack.add { "https://github.com/NMAC427/guess-indent.nvim" }
