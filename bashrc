@@ -13,6 +13,7 @@
     alias code='code --disable-gpu --ozone-platform=x11'
     # Neovim profile
     alias vip='NVIM_APPNAME=nvim-personal nvim'
+    alias vit='NVIM_APPNAME=alt-nvim nvim'
     # Better ls
     alias ls='ls -lh --color=auto'
     # Better grep
